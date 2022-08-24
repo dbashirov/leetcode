@@ -34,12 +34,12 @@ func main() {
 			}
 			if matrix[i][j] == "/" || matrix[i][j] == "\\" {
 				matrix[n-i][m-j-1], matrix[i][j] = matrix[i][j], matrix[n-i][m-j-1]
-				mb[n-i][m-j-1] = true	
+				mb[n-i][m-j-1] = true
 			} else {
 				matrix[n-i-1][m-j-1], matrix[i][j] = matrix[i][j], matrix[n-i-1][m-j-1]
 				mb[n-i-1][m-j-1] = true
 			}
-			
+
 		}
 		// fmt.Println()
 		// fmt.Println(i)
