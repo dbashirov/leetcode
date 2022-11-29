@@ -26,21 +26,6 @@ func (s *SingelList) add(v int) {
 	}
 }
 
-func add(head *ListNode, v int) {
-	ln := &ListNode{
-		Val: v,
-	}
-	if head == nil {
-		head = ln
-	} else {
-		current := head
-		for current.Next != nil {
-			current = current.Next
-		}
-		current.Next = ln
-	}
-}
-
 func printListNode(head *ListNode) {
 	cur := head
 	for cur != nil {
