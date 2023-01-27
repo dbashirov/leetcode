@@ -11,36 +11,47 @@ func main() {
 	out := bufio.NewWriter(os.Stdout)
 	defer out.Flush()
 
-	var cntN, cntQ int
+	var cntN, cntQ, max, imax int
 	var s string
+	
 	fmt.Fscanln(in, &cntN)
 	dict := make([]string, cntN)
 	for i := 0; i < cntN; i++ {
 		fmt.Fscanf(in, "%s\n", &dict[i])
 	}
-	// fmt.Fprintln(out, dict)
-	fmt.Fscanln(in, &cntQ)
 
+	fmt.Fscanln(in, &cntQ)
 	for q := 0; q < cntQ; q++ {
 		fmt.Fscanf(in, "%s\n", &s)
-		arr := make([]string, cntN)
-		// buf := make([]string, cntN)
-		for i := 0; i < len(dict); i++ {
-			// fmt.Fprintln(out, 1, s)
-			if s[len(s)-1] == dict[i][len(dict[i])-1] {
-				arr = append(arr, dict[i])
-				// fmt.Fprintln(out, s[len(s)], dict[i])
+		findMax := make(map[int]int, cntN)
+		max = 0
+
+		for i := 0; i < cntN; i++ {
+			for j := 0; j < len(s); j++ {
+			
+				if s == dict[i]{
+					break
+				}
+				if j >= len(dict[i]) {
+					break
+				}
+				if s[len(s)-j-1] != dict[i][len(dict[i])-j-1] {
+					break
+				}
+
+				findMax[i]++
+			}
+			if max < findMax[i] {
+				imax = i
+				max = findMax[i]
 			}
 		}
-		fmt.Fprintln(out, arr)
-		// for j := 1; j < len(s); j++ {
-		// 	copy(buf, arr)
-		// 	for i := 0; i < len(dict); i++ {
-		// 		if s[len(s)-j] != dict[i][len(dict[i])-j] {
-		// 			arr = append(arr)
-		// 		}
-		// 	}
-		// }
+
+		if max > 0 {
+			fmt.Fprintln(out, dict[imax])
+		} else {
+			fmt.Fprintln(out, dict[0])
+		}
 	}
 
 }
